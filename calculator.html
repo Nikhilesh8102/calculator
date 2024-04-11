@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    .calculator{
+        background-color:rgb(37, 96, 168);
+        margin-inline:auto;
+        margin-block:100px;
+        width:fit-content;
+        padding:40px 36px 30px;
+        border-radius:8px;
+    }
+    .flex{
+        width:fit-content;
+        max-width:278px;
+        
+        display:flex;
+        flex-wrap: wrap;
+        gap:12px;
+        background-color:rgb(10, 42, 71);
+       
+        padding:20px;
+       border-radius:10px;
+    }
+    button{
+       width:60px;
+        text-align: center;
+        border:none;
+        background-color:rgb(208, 203, 130);
+        color:rgb(10, 42, 71);
+        font-size:30px;
+        padding:10px 24px;
+        border-radius:6px;
+        font-weight:600;
+        cursor:pointer;
+        
+    }
+    .del{
+background-color:rgba(255, 58, 3, 0.913);
+color:white;
+font-size:14px;
+padding:10px 24px 10px 18px;
+    }
+    .reset,.equal{
+width:47.6%;
+padding:0;
+
+    }
+    .reset{
+        font-size:16px;
+        background-color:rgba(215, 127, 11, 0.807);
+        color:white;
+    }
+    .equal{
+        background-color:rgb(74, 185, 43);
+        color:white;
+    }
+    .result{
+       width:278px;
+       height:40px;
+       padding:20px;
+       border-radius:6px;
+       margin-bottom:20px;
+       background-color:rgb(10, 42, 71);
+       color:rgb(221, 222, 232);
+       font-size:26px;
+       font-weight:500;
+    }
+    h2{
+        margin:0;
+        margin-bottom:10px;
+        color:white;
+        font-style: italic;
+        font-size:26px;
+    }
+</style>
+<body>
+    <div class="calculator">
+        <h2>Calc</h2>
+        <div class="result"></div>
+        <div class="flex">
+            <button onclick="append('7')">7</button>
+            <button onclick="append('8')">8</button>
+            <button onclick="append('9')">9</button>
+            <button class="del" onclick="deleteLast()">DEL</button>
+            <button onclick="append('4')">4</button>
+            <button onclick="append('5')">5</button>
+            <button onclick="append('6')">6</button>
+            <button onclick="append('+')">+</button>
+
+            
+            <button onclick="append('1')">1</button>
+            <button onclick="append('2')">2</button>
+            <button onclick="append('3')">3</button>
+            <button onclick="append('-')">-</button>
+            
+            <button onclick="append('.')">.</button>
+            <button onclick="append('0')">0</button>
+            <button onclick="append('/')">/</button>
+            <button onclick="append('*')">x</button>
+            <button class="reset" onclick="reset()">RESET</button>
+            <button class="equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        let result = document.querySelector('.result');
+        let calc = '';
+
+        function append(value) {
+            calc += value;
+            result.innerText = calc;
+        }
+
+        function reset() {
+            calc = '';
+            result.innerText = '';
+        }
+
+        function calculate() {
+            try {
+                result.innerText = eval(calc);
+                calc = result.innerText;
+            } catch (error) {
+                result.innerText = 'Error';
+            }
+        }
+        function deleteLast() {
+            calc = calc.slice(0, -1);
+            result.innerText = calc;
+        }
+    </script>
+</body>
+</html>
